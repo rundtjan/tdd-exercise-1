@@ -76,7 +76,7 @@ function createApp(database) {
   }
 
   function isMonday(date) {
-    return date.getDay() === 1;
+    return convert(date).dayOfWeek === 1;
   }
 
   function isHoliday(date) {
@@ -93,6 +93,13 @@ function createApp(database) {
       }
     }
     return false;
+  }
+
+  function convert(date){
+    return date
+    .toTemporalInstant()                         
+    .toZonedDateTimeISO(Temporal.Now.timeZone()) 
+    .toPlainDate();
   }
 
   return app;
